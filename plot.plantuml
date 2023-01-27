@@ -1,0 +1,64 @@
+@startuml Space Invaders
+
+skinparam sequence{
+    ParticipantPadding 30
+    MessageAlign center
+}
+
+title Space Invaders
+
+class Game{
+    -name: String
+    -width: Int
+    -height: Int 
+    -font: Font 
+    -clock: Clock
+    -screen: Display 
+    -icon: Image 
+    -level: Int 
+    -cooldown: Int 
+    -player: Player 
+    -score: Int 
+    
+    -void handleEvents()
+    -void update()
+    -void draw() 
+    -void run()
+}
+
+class Player{
+    -x: Int
+    -y: Int
+    -img: Image 
+    -tail: Tail 
+    -lives: 10 
+    
+    -void update() 
+    -void draw()
+}
+
+class Enemy{
+    -x: Int 
+    -y: Int 
+    -velocity: Int 
+    -life: Int 
+}
+
+class Tail{
+    -particles: Particle[]
+    -color: Int[]
+
+    -void draw()
+}
+
+class Firework{
+    -particles: Particle[] 
+    -void draw()
+}
+
+
+Game --> Player: Using
+Player --> Tail: Using for animation
+Enemy --> Firework: Using
+
+@enduml
